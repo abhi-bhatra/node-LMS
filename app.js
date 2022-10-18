@@ -47,7 +47,7 @@ app.post("/", (req, res) => {
     })
 })
 
-app.get("/issue", (req, res) => {
+app.post("/issue", (req, res) => {
     const requestedBookName = req.body.book;
 
     pool.query(
@@ -62,7 +62,7 @@ app.get("/issue", (req, res) => {
     )
 })
 
-app.get("/return", (req, res) => {
+app.post("/return", (req, res) => {
     const requestedBookName = req.body.book;
 
     pool.query(
