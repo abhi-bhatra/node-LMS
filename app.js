@@ -13,8 +13,11 @@ app.use(
 
 app.get("/", (req, res) => {
     console.log(db.getUsers);
-    res.render("home", { data: db.getBooks })
+    res.render("home", { data: db.getBooks });
 })
+
+// create getBooks api at route /books
+app.get("/books", {data: db.getBooks});
 
 app.listen(3000, (req, res) => {
     console.log("App is running on port 3000")
