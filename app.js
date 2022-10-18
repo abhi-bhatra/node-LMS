@@ -29,6 +29,24 @@ app.get("/", (req, res) => {
     })
 })
 
+app.get("/add", (req, res) => {
+    res.render('addbook');
+})
+
+app.post("/", (req, res) => {
+    const id = req.body.id;
+    const name = req.body.book;
+    const author = req.body.author;
+    const avail = req.body.status;
+
+    pool.query('INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)', [id, name, author, avail], (error, results) => {
+        if (error) {
+            throw error
+        }
+    res.redirect('/');
+    })
+})
+
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
 });

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Library Management System</title>
+</head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<body>
+    <h1>Add the Book to LMS</h1>
+    <form action="/" method="post">
+        <input type="text" placeholder="Book id" name="id">
+        <input type="text" placeholder="Book Name" name="book">
+        <input type="text" placeholder="Book Author" name="author">
+        <input type="text" placeholder="Availability(TRUE or FALSE)" name="status">
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
