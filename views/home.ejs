@@ -32,8 +32,8 @@
             <th>Book Author</th>
             <th>Book Availability</th>
         </tr>
-        <% data.forEach(element=> { %>
             <tr>
+                <% data.forEach(function(element) { %>
                 <td>
                     <%= element.ID %>
                 </td>
@@ -46,9 +46,8 @@
                 <td>
                     <%= element.STATUS %>
                 </td>
+                <% }); %>
             </tr>
-            <% }) %>
-
     </table>
 
 </body>
