@@ -24,7 +24,7 @@
 </style>
 
 <body>
-    <h1>Add the Book to LMS</h1>
+    <h1>Add Book</h1>
     <form action="/" method="post">
         <input type="text" placeholder="Book id" name="id">
         <input type="text" placeholder="Book Name" name="book">
@@ -32,5 +32,18 @@
         <input type="text" placeholder="Availability(TRUE or FALSE)" name="status">
         <button type="submit">Add</button>
     </form>
+
+    <h1>Issue Book</h1>
+    <form action="/issue" method="post">
+        <input type="text" style="display: none;" name="name" value="<%= data.name %>">
+        <button type="submit">Issue</button>
+    </form>
+
+    <h1>Return Book</h1>
+    <form action="/return" method="post">
+        <input type="text" style="display: none;" name="name" value="<%= data.name %>">
+        <button type="submit">Return</button>
+    </form>
 </body>
+
 </html>

@@ -33,6 +33,36 @@ app.get("/add", (req, res) => {
     res.render('addbook');
 })
 
+app.get("/issue", (req, res) => {
+    let requestedBookName = req.query.name;
+
+    pool.query(
+        'UPDATE books SET status = FALSE WHERE name = $1',
+        [requestedBookName],
+        (error, results) => {
+            if (error) {
+                throw error
+            }
+            res.redirect('/');
+        }
+    )
+})
+
+app.get("/return", (req, res) => {
+    let requestedBookName = req.query.name;
+
+    pool.query(
+        'UPDATE books SET status = TRUE WHERE name = $1',
+        [requestedBookName],
+        (error, results) => {
+            if (error) {
+                throw error
+            }
+            res.redirect('/');
+        }
+    )
+})
+
 app.post("/", (req, res) => {
     const id = req.body.id;
     const name = req.body.book;
