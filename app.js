@@ -51,7 +51,7 @@ app.post("/issue", (req, res) => {
     const name = req.body.book;
 
     pool.query(
-        'UPDATE books SET status = FALSE WHERE name = $1',
+        'UPDATE books SET STATUS = FALSE WHERE BOOK = $1',
         [name],
         (error, results) => {
             if (error) {
@@ -66,7 +66,7 @@ app.post("/return", (req, res) => {
     const requestedBookName = req.body.book;
 
     pool.query(
-        'UPDATE books SET status = TRUE WHERE name = $1',
+        'UPDATE books SET STATUS = TRUE WHERE BOOK = $1',
         [requestedBookName],
         (error, results) => {
             if (error) {
