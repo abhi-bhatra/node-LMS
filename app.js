@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
         if (error) {
             throw error
         }
+        console.log(results.rows);
         res.render('home', { data: results.rows });
     })
 })
