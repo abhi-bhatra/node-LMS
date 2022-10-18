@@ -48,7 +48,7 @@ app.post("/", (req, res) => {
 })
 
 app.get("/issue", (req, res) => {
-    let requestedBookName = req.query.book;
+    const requestedBookName = req.body.book;
 
     pool.query(
         'UPDATE books SET status = FALSE WHERE name = $1',
@@ -63,7 +63,7 @@ app.get("/issue", (req, res) => {
 })
 
 app.get("/return", (req, res) => {
-    let requestedBookName = req.query.book;
+    const requestedBookName = req.body.book;
 
     pool.query(
         'UPDATE books SET status = TRUE WHERE name = $1',
