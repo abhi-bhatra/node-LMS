@@ -33,8 +33,22 @@ app.get("/add", (req, res) => {
     res.render('addbook');
 })
 
+app.post("/", (req, res) => {
+    const id = req.body.id;
+    const name = req.body.book;
+    const author = req.body.author;
+    const avail = req.body.status;
+
+    pool.query('INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)', [id, name, author, avail], (error, results) => {
+        if (error) {
+            throw error
+        }
+    res.redirect('/');
+    })
+})
+
 app.get("/issue", (req, res) => {
-    let requestedBookName = req.query.name;
+    let requestedBookName = req.query.book;
 
     pool.query(
         'UPDATE books SET status = FALSE WHERE name = $1',
@@ -49,7 +63,7 @@ app.get("/issue", (req, res) => {
 })
 
 app.get("/return", (req, res) => {
-    let requestedBookName = req.query.name;
+    let requestedBookName = req.query.book;
 
     pool.query(
         'UPDATE books SET status = TRUE WHERE name = $1',
@@ -61,20 +75,6 @@ app.get("/return", (req, res) => {
             res.redirect('/');
         }
     )
-})
-
-app.post("/", (req, res) => {
-    const id = req.body.id;
-    const name = req.body.book;
-    const author = req.body.author;
-    const avail = req.body.status;
-
-    pool.query('INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)', [id, name, author, avail], (error, results) => {
-        if (error) {
-            throw error
-        }
-    res.redirect('/');
-    })
 })
 
 app.listen(3000, () => {

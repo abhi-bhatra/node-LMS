@@ -35,13 +35,13 @@
 
     <h1>Issue Book</h1>
     <form action="/issue" method="post">
-        <input type="text" style="display: none;" name="name" value="<%= data.name %>">
+        <input type="text" style="display: none;" name="book" value="<%= data.book %>">
         <button type="submit">Issue</button>
     </form>
 
     <h1>Return Book</h1>
     <form action="/return" method="post">
-        <input type="text" style="display: none;" name="name" value="<%= data.name %>">
+        <input type="text" style="display: none;" name="book" value="<%= data.book %>">
         <button type="submit">Return</button>
     </form>
 </body>
