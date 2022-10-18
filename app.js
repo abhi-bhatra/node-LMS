@@ -27,3 +27,7 @@ app.get("/", (req, res) => {
         res.render('home', { data: results.rows });
     })
 })
+
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});
