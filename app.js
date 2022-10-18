@@ -48,11 +48,11 @@ app.post("/", (req, res) => {
 })
 
 app.post("/issue", (req, res) => {
-    const requestedBookName = req.body.book;
+    const name = req.body.book;
 
     pool.query(
         'UPDATE books SET status = FALSE WHERE name = $1',
-        [requestedBookName],
+        [name],
         (error, results) => {
             if (error) {
                 throw error
