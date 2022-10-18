@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Library Management System</title>
+</head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<body>
+    <h1>All Books</h1>
+    <table>
+        <tr>
+            <th>Book Serial</th>
+            <th>Book Name</th>
+            <th>Book Author</th>
+            <th>Book Availability</th>
+        </tr>
+        <% data.forEach(element=> { %>
+            <tr>
+                <td>
+                    <%= element.ID %>
+                </td>
+                <td>
+                    <%= element.BOOK %>
+                </td>
+                <td>
+                    <%= element.AUTHOR %>
+                </td>
+                <td>
+                    <%= element.STATUS %>
+                </td>
+            </tr>
+            <% }) %>
+
+    </table>
+
+</body>
+
+</html>
