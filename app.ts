@@ -24,7 +24,7 @@ app.get("/", async (req: Request, res: Response) => {
 });
 
 app.get("/add", (req: Request, res: Response) => {
-  res.render('add');
+  res.render('addbook');
 });
 
 app.post("/", (req: Request, res: Response) => {
