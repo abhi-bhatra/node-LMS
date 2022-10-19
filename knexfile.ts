@@ -4,7 +4,7 @@ import type { Knex } from "knex";
 
 const config: { [key: string]: Knex.Config } = {
   staging: {
-    client: "postgresql",
+    client: "pg",
     connection: {
       database: "api",
       user: "abhinav",
@@ -15,7 +15,7 @@ const config: { [key: string]: Knex.Config } = {
       max: 10
     },
     migrations: {
-      tableName: "knex_migrations"
+      tableName: "api"
     }
   }
 };
