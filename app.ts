@@ -1,9 +1,17 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import { Pool } from "pg";
+import bodyParser from "body-parser";
 const app = express();
 dotenv.config();
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.json())
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    })
+)
 
 const pool = new Pool({
   host: process.env.DB_HOST,
