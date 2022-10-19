@@ -44,11 +44,11 @@ app.post("/", (req: Request, res: Response) => {
       pool.query(
         "INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)",
         [id, name, author, avail],
-        (err, result) => {
+        (err, ) => {
           if (err) {
             console.log(err);
           }
-          console.log(result);
+          // console.log(result);
           res.redirect("/");
         }
       );
@@ -63,11 +63,11 @@ app.post("/issue", (req: Request, res: Response) => {
   pool.query(
     'UPDATE books SET STATUS = FALSE WHERE BOOK = $1',
     [name],
-    (err, result) => {
+    (err, ) => {
       if (err) {
         console.log(err);
       }
-      console.log(result);
+      // console.log(result);
       res.redirect("/");
     }
   );
@@ -79,11 +79,11 @@ app.post("/return", (req: Request, res: Response) => {
   pool.query(
     'UPDATE books SET STATUS = TRUE WHERE BOOK = $1',
     [name],
-    (err, result) => {
+    (err, ) => {
       if (err) {
         console.log(err);
       }
-      console.log(result);
+      // console.log(result);
       res.redirect("/");
     }
   );
@@ -95,11 +95,11 @@ app.post("/delete", (req: Request, res: Response) => {
   pool.query(
     'DELETE FROM books WHERE BOOK = $1',
     [name],
-    (err, result) => {
+    (err, ) => {
       if (err) {
         console.log(err);
       }
-      console.log(result);
+      // console.log(result);
       res.redirect("/");
     }
   );
