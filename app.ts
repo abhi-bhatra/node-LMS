@@ -40,7 +40,6 @@ app.post("/", (req: Request, res: Response) => {
   const name =  req.body.book;
   const author = req.body.author;
   const avail = req.body.status;
-  console.log(req.body.book);
     try {
       pool.query(
         "INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)",
