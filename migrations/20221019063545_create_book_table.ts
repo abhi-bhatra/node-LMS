@@ -1,16 +1,13 @@
-import { Knex } from "knex";
-
-exports.up = function (knex) {
-    return knex.schema
-        .createTable('users', function (table) {
-            table.increments('id');
-            table.string('name', 255).notNullable();
-            table.string('email', 255);
-            table.timestamps();
-        });
-};
-
-exports.down = function (knex) {
-    return knex.schema
-        .dropTable('users');
-};
+exports.up = function(knex, Promise) {
+    const createQuery = `CREATE TABLE <examples>(
+      id SERIAL PRIMARY KEY NOT NULL,
+      message TEXT,
+      created_at TIMESTAMP
+    )`
+    return knex.raw(createQuery)
+  }
+  
+  exports.down = function(knex, Promise) {
+    const dropQuery = `DROP TABLE <examples>`
+    return knex.raw(dropQuery)
+  }
