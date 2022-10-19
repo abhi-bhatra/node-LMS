@@ -17,7 +17,7 @@ app.get("/", async (req: Request, res: Response) => {
   try {
     const result = await pool.query("SELECT * FROM books");
     // const books = JSON.stringify(result.rows);
-    res.render('home', {data: result.rows});
+    res.render('home', { data: result.rows });
   } catch (err) {
     console.log(err);
   }
@@ -28,24 +28,28 @@ app.get("/add", (req: Request, res: Response) => {
 });
 
 app.post("/", (req: Request, res: Response) => {
-  const id = req.body.id;
-  const name = req.body.book;
-  const author = req.body.author;
-  const avail = req.body.status;
-  try {
-    pool.query(
-      "INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)",
-      [id, name, author, avail],
-      (err, result) => {
-        if (err) {
-          console.log(err);
+  const form = document.querySelector('form');
+  form.onsubmit = (_) => {
+    const data = new FormData(form);
+    const id = data.get('id') as string;
+    const name = data.get('book') as string;
+    const author = data.get('author') as string;
+    const avail = data.get('status') as string;
+    try {
+      pool.query(
+        "INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)",
+        [id, name, author, avail],
+        (err, result) => {
+          if (err) {
+            console.log(err);
+          }
+          console.log(result);
+          res.redirect("/");
         }
-        console.log(result);
-        res.redirect("/");
-      }
-    );
-  } catch (err) {
-    console.log(err);
+      );
+    } catch (err) {
+      console.log(err);
+    }
   }
 });
 
