@@ -4,15 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts",
-    "serve": "nodemon app.js",
     "start": "nodemon app.ts",
-    "dev": "nodemon -L -e ts --exec \"npm run build && npm start\""
+    "knex:migrate:make": "knex --knexfile src/database/knexfile.ts -x ts migrate:make",
+    "knex:migrate:latest": "knex --knexfile src/database/knexfile.ts migrate:latest",
+    "knex:migrate:rollback": "knex --knexfile src/database/knexfile.ts migrate:rollback"
   },
   "author": "Abhinav Sharma",
   "license": "ISC",
   "dependencies": {
+    "knex": "^0.16.3",
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
