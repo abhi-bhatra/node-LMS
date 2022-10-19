@@ -89,6 +89,22 @@ app.post("/return", (req: Request, res: Response) => {
   );
 });
 
+app.post("/delete", (req: Request, res: Response) => {
+  const name = req.body.book;
+
+  pool.query(
+    'DELETE FROM books WHERE BOOK = $1',
+    [name],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(result);
+      res.redirect("/");
+    }
+  );
+});
+
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
 })
