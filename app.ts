@@ -16,9 +16,8 @@ const pool = new Pool({
 app.get("/", async (req: Request, res: Response) => {
   try {
     const result = await pool.query("SELECT * FROM books");
-    // Convert result.rows in JSON
-    const books = JSON.stringify(result.rows);
-    res.render('home', {data: books});
+    // const books = JSON.stringify(result.rows);
+    res.render('home', {data: result.rows});
   } catch (err) {
     console.log(err);
   }
