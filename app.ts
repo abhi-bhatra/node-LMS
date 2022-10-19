@@ -23,6 +23,64 @@ app.get("/", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/add", (req: Request, res: Response) => {
+  res.render('add');
+});
+
+app.post("/", (req: Request, res: Response) => {
+  const id = req.body.id;
+  const name = req.body.book;
+  const author = req.body.author;
+  const avail = req.body.status;
+  try {
+    pool.query(
+      "INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)",
+      [id, name, author, avail],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log(result);
+        res.redirect("/");
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.post("/issue", (req: Request, res: Response) => {
+  const name = req.body.book;
+
+  pool.query(
+    'UPDATE books SET STATUS = FALSE WHERE BOOK = $1',
+    [name],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(result);
+      res.redirect("/");
+    }
+  );
+});
+
+app.post("/return", (req: Request, res: Response) => {
+  const name = req.body.book;
+
+  pool.query(
+    'UPDATE books SET STATUS = TRUE WHERE BOOK = $1',
+    [name],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(result);
+      res.redirect("/");
+    }
+  );
+});
+
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
 })
