@@ -28,13 +28,8 @@ app.get("/add", (req: Request, res: Response) => {
 });
 
 app.post("/", (req: Request, res: Response) => {
-  const form = document.querySelector('form');
-  form.onsubmit = (_) => {
-    const data = new FormData(form);
-    const id = data.get('id') as string;
-    const name = data.get('book') as string;
-    const author = data.get('author') as string;
-    const avail = data.get('status') as string;
+  const { id, name, author, avail } = req.body;
+  console.log(req.body);
     try {
       pool.query(
         "INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)",
@@ -50,7 +45,6 @@ app.post("/", (req: Request, res: Response) => {
     } catch (err) {
       console.log(err);
     }
-  }
 });
 
 app.post("/issue", (req: Request, res: Response) => {
