@@ -28,8 +28,11 @@ app.get("/add", (req: Request, res: Response) => {
 });
 
 app.post("/", (req: Request, res: Response) => {
-  const { id, name, author, avail } = req.body;
-  console.log(req.body);
+  const id = req.body.id;
+  const name =  req.body.book;
+  const author = req.body.author;
+  const avail = req.body.status;
+  console.log(req.body.book);
     try {
       pool.query(
         "INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)",
