@@ -1,23 +1,20 @@
-import type { Knex } from "knex";
+import dotenv from "dotenv";
 
-// Update with your config settings.
-
-const config: { [key: string]: Knex.Config } = {
-  staging: {
+dotenv.config();
+module.exports = {
+  development: {
     client: "pg",
     connection: {
-      database: "api",
-      user: "abhinav",
-      password: "abhinav"
-    },
-    pool: {
-      min: 2,
-      max: 10
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
     },
     migrations: {
-      tableName: "api"
+      directory: __dirname + '/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/seeds'
     }
   }
 };
-
-module.exports = config;
