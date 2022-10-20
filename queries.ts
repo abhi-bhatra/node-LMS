@@ -17,11 +17,31 @@ const pool = new Pool({
     port: parseInt(process.env.DB_PORT || "5432")
   });
 
-// Write a function to add book
+
 export function addBook(book: Book) {
   const query = `INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)`;
   const values = [book.id, book.name, book.author, book.avail];
   return pool.query(query, values);
 }
 
-export default addBook;
+export function issueBook(book: Book) {
+  const query = `UPDATE books SET STATUS = FALSE WHERE BOOK = $1`;
+  const values = [book.name];
+  return pool.query(query, values);
+}
+
+export function returnBook(book: Book) {
+  const query = `UPDATE books SET STATUS = TRUE WHERE BOOK = $1`;
+  const values = [book.name];
+  return pool.query(query, values);
+}
+
+export function deleteBook(book: Book) {
+  const query = `DELETE FROM books WHERE BOOK = $1`;
+  const values = [book.name];
+  return pool.query(query, values);
+}
+
+export function getBooks() {
+  return pool.query("SELECT * FROM books");
+}

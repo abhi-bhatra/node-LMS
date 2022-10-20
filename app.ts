@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { Pool } from "pg";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import addBook from "./addbook";
+import { addBook, issueBook, returnBook, deleteBook, getBooks } from "./queries";
 dotenv.config();
 const app = express();
 app.set('view engine', 'ejs');
