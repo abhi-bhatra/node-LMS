@@ -1,4 +1,4 @@
-import { getBooks } from "../queries";
+import { getBooks } from "../../queries";
 import { expect } from "chai";
 
 describe("getBooks", () => {
