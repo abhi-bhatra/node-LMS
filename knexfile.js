@@ -8,11 +8,11 @@ module.exports = {
     client: 'pg',
     version: '7.2',
     connection: {
-      database: process.env.DB_NAME,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT
+      database: config.get('db.host'),
+      user: config.get('db.user'),
+      password: config.get('db.password'),
+      host: config.get('db.host'),
+      port: config.get('db.port'),
     },
     pool: {
       min: 2,
