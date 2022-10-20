@@ -1,17 +1,11 @@
 import express, { Request, Response } from "express";
-import dotenv from "dotenv";
 import { Pool } from "pg";
+import dotenv from "dotenv";
 import bodyParser from "body-parser";
-const app = express();
+import addBook from "./addbook";
 dotenv.config();
+const app = express();
 app.set('view engine', 'ejs');
-
-app.use(bodyParser.json())
-app.use(
-    bodyParser.urlencoded({
-        extended: true,
-    })
-)
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -20,6 +14,13 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: parseInt(process.env.DB_PORT || "5432")
 });
+
+app.use(bodyParser.json())
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    })
+)
 
 app.get("/", async (req: Request, res: Response) => {
   try {
@@ -35,23 +36,17 @@ app.get("/add", (req: Request, res: Response) => {
   res.render('addbook');
 });
 
-app.post("/", (req: Request, res: Response) => {
-  const id = req.body.id;
-  const name =  req.body.book;
-  const author = req.body.author;
-  const avail = req.body.status;
+// create a route to add book
+app.post("/", async (req: Request, res: Response) => {
     try {
-      pool.query(
-        "INSERT INTO books (ID, BOOK, AUTHOR, STATUS) VALUES ($1, $2, $3, $4)",
-        [id, name, author, avail],
-        (err, ) => {
-          if (err) {
-            console.log(err);
-          }
-          // console.log(result);
-          res.redirect("/");
-        }
-      );
+      const book = {
+        id: parseInt(req.body.id),
+        name:  req.body.book,
+        author: req.body.author,
+        avail: req.body.status
+      };
+      await addBook(book);
+      res.redirect("/");
     } catch (err) {
       console.log(err);
     }
