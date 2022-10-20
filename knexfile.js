@@ -7,7 +7,7 @@ module.exports = {
   client: 'pg',
   version: '7.2',
   connection: {
-    database: config.get('db.host'),
+    database: config.get('db.database'),
     user: config.get('db.user'),
     password: config.get('db.password'),
     host: config.get('db.host'),
