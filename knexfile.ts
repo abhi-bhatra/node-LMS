@@ -1,10 +1,9 @@
-import type { Knex } from "knex";
 import dotenv from "dotenv";
 dotenv.config();
 // Update with your config settings.
 
-const config: { [key: string]: Knex.Config } = {
-  staging: {
+module.exports = {
+  configuration: {
     client: "pg",
     version: '7.2',
     connection: {
@@ -23,5 +22,3 @@ const config: { [key: string]: Knex.Config } = {
     }
   }
 };
-
-module.exports = config;
