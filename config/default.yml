@@ -1,6 +1,6 @@
 db:
   database: 'api'
-  username: 'abhinav'
+  user: 'abhinav'
   password: 'abhinav'
   host: 'localhost'
   port: 5432
