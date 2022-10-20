@@ -1,5 +1,7 @@
-var dotenv = require('dotenv');
-dotenv.load();
+const dotenv = require('dotenv');
+dotenv.config();
+
+const config = require('config');
 
 module.exports = {
   staging: {
