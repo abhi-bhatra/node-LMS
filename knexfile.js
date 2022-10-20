@@ -3,23 +3,25 @@ dotenv.config();
 
 const config = require('config');
 
-module.exports = {
-  staging: {
-    client: 'pg',
-    version: '7.2',
-    connection: {
-      database: config.get('db.host'),
-      user: config.get('db.user'),
-      password: config.get('db.password'),
-      host: config.get('db.host'),
-      port: config.get('db.port'),
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
+let dbConnection = {
+  client: 'pg',
+  version: '7.2',
+  connection: {
+    database: config.get('db.host'),
+    user: config.get('db.user'),
+    password: config.get('db.password'),
+    host: config.get('db.host'),
+    port: config.get('db.port'),
+  },
+  pool: {
+    min: 2,
+    max: 10
+  },
+  migrations: {
+    tableName: 'knex_migrations'
   }
 };
+
+module.exports = {
+  connection: dbConnection,
+}
