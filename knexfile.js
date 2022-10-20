@@ -3,7 +3,7 @@ dotenv.config();
 
 const config = require('config');
 
-let dbConnection = {
+module.exports = {
   client: 'pg',
   version: '7.2',
   connection: {
@@ -21,7 +21,3 @@ let dbConnection = {
     tableName: 'knex_migrations'
   }
 };
-
-module.exports = {
-  connection: dbConnection,
-}
