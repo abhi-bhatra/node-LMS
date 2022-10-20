@@ -20,9 +20,9 @@ app.get("/", async (req: Request, res: Response) => {
   }
 });
 
-// app.get("/add", (req: Request, res: Response) => {
-//   res.render('addbook');
-// });
+app.get("/add", (req: Request, res: Response) => {
+  res.render('addbook');
+});
 
 // create a route to add book
 app.post("/", async (req: Request, res: Response) => {
