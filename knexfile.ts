@@ -5,7 +5,6 @@ dotenv.config();
 module.exports = {
   configuration: {
     client: "pg",
-    version: '7.2',
     connection: {
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
