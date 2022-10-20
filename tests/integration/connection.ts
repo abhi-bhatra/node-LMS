@@ -1,4 +1,4 @@
-import { issueBook, returnBook, deleteBook } from "../../queries";
+import { issueBook, returnBook, deleteBook } from "../../src/queries";
 import { expect } from "chai";
 
 describe("issueBook", () => {

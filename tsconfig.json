@@ -2,11 +2,11 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
-        "rootDir": "./",
+        "rootDir": "./src",
         "esModuleInterop": true,
         "moduleResolution": "node",
         "sourceMap": true,
-        "outDir": "dist",
+        "outDir": "./dist",
         "types": [
             "node",
             "mocha"
