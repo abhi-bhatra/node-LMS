@@ -47,7 +47,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.get("/", async (req: Request, res: Response) => {
+app.get("/", checkNotAuthenticated, async (req: Request, res: Response) => {
   try {
     const books = await getBooks();
     res.render("home", { data: books.rows });
