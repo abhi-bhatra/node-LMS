@@ -50,7 +50,7 @@ app.use(flash());
 app.get("/", async (req: Request, res: Response) => {
   try {
     const books = await getBooks();
-    res.render("home", { data: books.rows, user: req.user.name });
+    res.render("home", { data: books.rows });
   } catch (err) {
     console.error(err.message);
   }
