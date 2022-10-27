@@ -51,24 +51,16 @@ app.get("/", async (req: Request, res: Response) => {
   }
 });
 
-app.get('/users/register', checkAuthenticated, (req: Request, res: Response) => {
-  try {
-    res.render("register");
-  } catch (err) {
-    console.error(err.message);
-  }
+app.get("/users/register", checkAuthenticated, (req: Request, res: Response) => {
+  res.render("register");
 });
 
 app.get('/users/login', checkAuthenticated, (req: Request, res: Response) => {
-  try {
-    res.render("login");
-  } catch (err) {
-    console.error(err.message);
-  }
+  res.render('login');
 });
 
 app.post('/users/register', async (req: Request, res: Response) => {
-  let { name, email, password, password2 } = req.body;
+  const { name, email, password, password2 } = req.body;
   // console.log(name, email, password, password2);
   let errors = [];
 
@@ -124,7 +116,7 @@ app.post('/users/register', async (req: Request, res: Response) => {
 });
 
 app.post('/users/login', passport.authenticate('local', {
-  successRedirect: '/users/dashboard',
+  successRedirect: '/',
   failureRedirect: '/users/login',
   failureFlash: true
 }));
