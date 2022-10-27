@@ -51,15 +51,15 @@ app.get("/", async (req: Request, res: Response) => {
   }
 });
 
-app.get('/users/register', checkAuthenticated, (req, res) => {
+app.get('/users/register', checkAuthenticated, (req: Request, res: Response) => {
   res.render('register');
 });
 
-app.get('/users/login', checkAuthenticated, (req, res) => {
+app.get('/users/login', checkAuthenticated, (req: Request, res: Response) => {
   res.render('login');
 });
 
-app.post('/users/register', async (req, res) => {
+app.post('/users/register', async (req: Request, res: Response) => {
   let { name, email, password, password2 } = req.body;
   // console.log(name, email, password, password2);
   let errors = [];
