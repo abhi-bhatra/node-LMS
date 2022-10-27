@@ -12,7 +12,7 @@ const pool = new Pool({
     port: parseInt(process.env.DB_PORT || "5432")
 });
 
-function initialize(passport) {
+export function initialize(passport) {
     const authenticateUser = (email, password, done) => {
         pool.query(
             `SELECT * FROM users WHERE email = $1`, [email], (err, results) => {
@@ -57,4 +57,4 @@ function initialize(passport) {
     });
 }
 
-module.exports = initialize;
+// module.exports = initialize;

@@ -5,12 +5,17 @@ import { Pool } from "pg";
 import dotenv from "dotenv";
 dotenv.config();
 
-const bcrypt = require('bcrypt');
-const session = require('express-session');
-const flash = require('express-flash');
-const passport = require('passport');
-const initializePassport = require('./authenticate/passportConfig');
-initializePassport(passport);
+// const bcrypt = require('bcrypt');
+// const session = require('express-session');
+// const flash = require('express-flash');
+// const passport = require('passport');
+// const initializePassport = require('./authenticate/passportConfig');
+import bcrypt from "bcrypt";
+import session from "express-session";
+import flash from "express-flash";
+import passport from "passport";
+import { initialize } from "./authenticate/passportConfig";
+initialize(passport);
 
 const pool = new Pool({
   host: process.env.DB_HOST,
