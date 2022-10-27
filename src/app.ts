@@ -45,7 +45,7 @@ app.use(flash());
 app.get("/", async (req: Request, res: Response) => {
   try {
     const books = await getBooks();
-    res.render("home", { data: books.rows });
+    res.render("home", { data: books.rows, user: req.user.name });
   } catch (err) {
     console.error(err.message);
   }
@@ -120,6 +120,16 @@ app.post('/users/login', passport.authenticate('local', {
   failureRedirect: '/users/login',
   failureFlash: true
 }));
+
+app.get('/users/logout', (req: Request, res: Response) => {
+  req.logout(function (err) {
+    if (err) {
+      throw err;
+    }
+    req.flash('success_msg', 'You have logged out');
+    res.redirect('/users/login');
+  })
+});
 
 app.get("/add", (req: Request, res: Response) => {
   res.render('addbook');
