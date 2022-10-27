@@ -52,11 +52,19 @@ app.get("/", async (req: Request, res: Response) => {
 });
 
 app.get('/users/register', checkAuthenticated, (req: Request, res: Response) => {
-  res.render('register');
+  try {
+    res.render("register");
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 app.get('/users/login', checkAuthenticated, (req: Request, res: Response) => {
-  res.render('login');
+  try {
+    res.render("login");
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 app.post('/users/register', async (req: Request, res: Response) => {
