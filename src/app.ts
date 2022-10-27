@@ -203,7 +203,7 @@ app.post("/delete", (req: Request, res: Response) => {
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect('/users/dashboard');
+    return res.redirect('/');
   }
   next();
 }
