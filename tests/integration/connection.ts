@@ -1,12 +1,12 @@
-import { issueBook, returnBook, deleteBook } from "../../src/queries";
-import { expect } from "chai";
+import { issueBook, returnBook, deleteBook } from '../../src/queries';
+import { expect } from 'chai';
 
 describe("issueBook", () => {
-    it("should issue a book", async () => {
+    it('should issue a book', async () => {
         const book = {
             id: 0,
-            name: "The Alchemist",
-            author: "Paulo Coelho",
+            name: 'The Alchemist',
+            author: 'Paulo Coelho',
             avail: true
         };
         const issue = await issueBook(book);
@@ -15,7 +15,7 @@ describe("issueBook", () => {
 });
 
 describe("returnBook", () => {
-    it("should return a book", async () => {
+    it('should return a book', async () => {
         const book = {
             id: 0,
             name: "The Alchemist",
@@ -31,12 +31,11 @@ describe("deleteBook", () => {
     it("should delete a book", async () => {
         const book = {
             id: 0,
-            name: "The Alchemist",
-            author: "Paulo Coelho",
+            name: 'The Alchemist',
+            author: 'Paulo Coelho',
             avail: false
         };
         const deleted = await deleteBook(book);
         expect(deleted).to.be.an("object");
     });
 });
-
