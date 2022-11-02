@@ -1,7 +1,9 @@
+import { Pool } from 'pg';
+import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
+
 const LocalStrategy = require('passport-local').Strategy;
-import { Pool } from "pg";
-import bcrypt from "bcrypt";
-import dotenv from "dotenv";
+
 dotenv.config();
 
 const pool = new Pool({
@@ -9,46 +11,45 @@ const pool = new Pool({
     user: process.env.DB_USER,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    port: parseInt(process.env.DB_PORT || "5432")
+    port: parseInt(process.env.DB_PORT || '5432', 10),
 });
 
-export function initialize(passport) {
+function initialize(passport: any): any {
     const authenticateUser = (email, password, done) => {
         pool.query(
-            `SELECT * FROM users WHERE email = $1`, [email], (err, results) => {
+            'SELECT * FROM users WHERE email = $1', [email], (err, results) => {
                 if (err) {
                     throw err;
                 }
                 console.log(results.rows);
                 if (results.rows.length > 0) {
                     const user = results.rows[0];
-                    bcrypt.compare(password, user.password, (err, isMatch) => {
-                        if (err) {
-                            throw err;
+                    bcrypt.compare(password, user.password, (error, isMatch) => {
+                        if (error) {
+                            throw error;
                         }
                         if (isMatch) {
                             return done(null, user);
-                        } else {
-                            return done(null, false, { message: "Password is incorrect" });
                         }
+                        return done(null, false, { message: 'Password is incorrect' });
                     });
                 } else {
-                    return done(null, false, { message: "Email is not registered" });
+                    return done(null, false, { message: 'Email is not registered' });
                 }
-            }
+                return null;
+            },
         );
-    }
+    };
     passport.use(new LocalStrategy({
-        usernameField: "email",
-        passwordField: "password"
+        usernameField: 'email',
+        passwordField: 'password',
     },
-        authenticateUser)
-    );
+    authenticateUser));
 
     passport.serializeUser((user, done) => done(null, user.id));
 
     passport.deserializeUser((id, done) => {
-        pool.query(`SELECT * FROM users WHERE id = $1`, [id], (err, results) => {
+        pool.query('SELECT * FROM users WHERE id = $1', [id], (err, results) => {
             if (err) {
                 throw err;
             }
@@ -57,4 +58,4 @@ export function initialize(passport) {
     });
 }
 
-// module.exports = initialize;
+export default initialize;
